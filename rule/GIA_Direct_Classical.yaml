@@ -1,0 +1,47 @@
+payload:
+  # ===== GIA 家用 CN 环境强制直连规则 =====
+
+  # 字幕 / 本地内容服务
+  - DOMAIN-KEYWORD,zimuku
+
+  # 国内服务 / 税务 / 票务
+  - DOMAIN,mnqcdn.anan.pro
+  - DOMAIN,shuiwu.beestooth.com
+  - DOMAIN,cdn.huapiaoer.com
+
+  # IC / 电子元件行情站
+  - DOMAIN,bom.ai
+  - DOMAIN,ic.net.cn
+  - DOMAIN,hqew.com
+  - DOMAIN,ickey.cn
+  - DOMAIN,gjd.icxh.cn
+
+  # 游戏 / 下载 / 厂商 CDN
+  - DOMAIN,mdnf.dn.nexoncdn.co.kr
+  - DOMAIN,dlcdnets.asus.com
+  - DOMAIN,checkout.steampowered.com
+
+  # 影视 / 刮削 / 资料库
+  - DOMAIN,movie.douban.com
+  - DOMAIN-SUFFIX,themoviedb.org
+
+  # Samsung / Galaxy
+  - DOMAIN-KEYWORD,galaxyappstore
+
+  # 汽车 / CN 地区服务纠偏
+  - DOMAIN-KEYWORD,denza
+  - DOMAIN-KEYWORD,mercedes-benz
+  - DOMAIN-KEYWORD,tesla
+  - DOMAIN-SUFFIX,tesla.cn
+  - DOMAIN-SUFFIX,mercedes-benz.com.cn
+  - DOMAIN-SUFFIX,benz.com.cn
+
+  # 旧规则里的冷门站
+  - DOMAIN-KEYWORD,xiaodiss
+  - DOMAIN-KEYWORD,52poke
+  - DOMAIN-KEYWORD,doordu
+  - DOMAIN-KEYWORD,banshenghuo
+  - DOMAIN-KEYWORD,wprosvi
+  - DOMAIN-KEYWORD,metshop
+
+Add GIA direct rules
