@@ -11,7 +11,7 @@ payload:
 
     # 微信小程序 / 国内业务接口
   - DOMAIN,wechat.beijiasi.gdtmsoft.com
-  - DOMAIN,gddbz.lanywell27.net
+  - DOMAIN,gddbzl.anywell27.net
 
   # IC / 电子元件行情站
   - DOMAIN,bom.ai
