@@ -1,0 +1,73 @@
+name: Sync Aethersailor API Files
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Sync selected rule files from api.asailor.org
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          BASE="https://api.asailor.org/Custom_OpenClash_Rules/main"
+
+          files=(
+            "rule/Custom_Direct_Domain.yaml"
+            "rule/Custom_Direct_Classical_IP.yaml"
+            "rule/Custom_Proxy_Domain.yaml"
+            "rule/Custom_Proxy_Classical_IP.yaml"
+            "rule/Steam_CDN_Classical.yaml"
+            "rule/Custom_Port_Direct.yaml"
+          )
+
+          for f in "${files[@]}"; do
+            echo "Syncing $f"
+            mkdir -p "$(dirname "$f")"
+
+            tmp="$(mktemp)"
+            curl -fsSL --retry 3 --connect-timeout 20 "$BASE/$f" -o "$tmp"
+
+            if [ ! -s "$tmp" ]; then
+              echo "Downloaded file is empty: $f"
+              exit 1
+            fi
+
+            if grep -qiE "<html|<!doctype|403 forbidden|404 not found" "$tmp"; then
+              echo "Downloaded file looks like an error page: $f"
+              exit 1
+            fi
+
+            cp "$tmp" "$f"
+          done
+
+      - name: Commit changes
+        shell: bash
+        run: |
+          set -e
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          if git diff --quiet; then
+            echo "No changes."
+          else
+            git add rule/Custom_Direct_Domain.yaml \
+                    rule/Custom_Direct_Classical_IP.yaml \
+                    rule/Custom_Proxy_Domain.yaml \
+                    rule/Custom_Proxy_Classical_IP.yaml \
+                    rule/Steam_CDN_Classical.yaml \
+                    rule/Custom_Port_Direct.yaml
+
+            git commit -m "Sync Aethersailor API rule files"
+            git push
+          fi
