@@ -30,7 +30,9 @@ payload:
   - DOMAIN-SUFFIX,themoviedb.org
 
   # Samsung / Galaxy
-  - DOMAIN-KEYWORD,galaxyappstore
+  - DOMAIN-SUFFIX,galaxyappstore.com
+  - DOMAIN-SUFFIX,samsungcloud.com
+  - DOMAIN-SUFFIX,samsunghealth.com
 
   # 汽车 / CN 地区服务纠偏
   - DOMAIN-SUFFIX,tesla.com
